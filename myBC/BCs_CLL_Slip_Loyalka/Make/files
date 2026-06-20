@@ -1,0 +1,4 @@
+U/CLL_SlipU_Loyalka_FvPatchVectorField.C
+T/CLL_JumpT_Loyalka_FvPatchScalarField.C
+
+LIB = $(FOAM_USER_LIBBIN)/librhoCentralFoam_CLL_Slip_Loyalka
