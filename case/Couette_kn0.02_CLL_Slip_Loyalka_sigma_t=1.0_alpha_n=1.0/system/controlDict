@@ -1,0 +1,93 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+libs
+("librhoCentralFoam_CLL_Slip_Loyalka.so");
+
+application     rhoCentralFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+// stopAt          writeNow;
+
+endTime         0.001;
+
+deltaT          1.0e-9;
+
+writeControl    adjustableRunTime;
+
+writeInterval   0.001;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+graphFormat     raw;
+
+runTimeModifiable true;
+
+adjustTimeStep  yes;
+
+maxCo           0.2;
+
+maxDeltaT       1;
+
+functions
+{
+
+  residuals
+  {
+    #includeEtc "caseDicts/postProcessing/numerical/residuals.cfg"
+
+    fields  (rho U e);
+  }
+
+  graphCell
+  {
+    start           (0    0 0);
+    end             (0 1e-3 0);
+
+    fields          (rho p U T);
+
+    axis            "y"; // The independent variable of the graph. Can be "x",
+                          // "y", "z", "xyz" (all coordinates written out), or
+                          // "distance" (from the start point).
+
+    #includeEtc "caseDicts/postProcessing/graphs/graphCell.cfg"
+  }
+
+  yPlus
+  {
+    type            yPlus;
+    libs            ("libfieldFunctionObjects.so");
+
+    executeControl  writeTime;
+    writeControl    writeTime;
+  }
+
+}
+
+// ************************************************************************* //

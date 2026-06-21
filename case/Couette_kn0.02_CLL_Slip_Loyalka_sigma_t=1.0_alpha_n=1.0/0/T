@@ -1,0 +1,59 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    object      T;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 1 0 0 0];
+
+internalField   uniform 273;
+
+boundaryField
+{
+    up
+    {
+        type            CLL_JumpT_Loyalka;
+        accommodationCoeff_t   1.0;
+        accommodationCoeff_n   1.0;
+        gamma           1.67;
+        Twall           uniform 273;
+        value           uniform 273;
+    }
+
+    down
+    {
+        type            CLL_JumpT_Loyalka;
+        accommodationCoeff_t   1.0;
+        accommodationCoeff_n   1.0;
+        gamma           1.67;
+        Twall           uniform 273;
+        value           uniform 273;
+    }
+    
+    left
+    {
+        type            cyclic;
+    }
+
+    right
+    {
+        type            cyclic;
+    }
+
+    defaultPatch
+    {
+        type            empty;
+    }
+
+}
+
+// ************************************************************************* //
