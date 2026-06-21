@@ -1,3 +1,0 @@
-SOURCE += myCompressibleMomentumTransportModels.C
-
-LIB = $(FOAM_USER_LIBBIN)/libmyRASModels
