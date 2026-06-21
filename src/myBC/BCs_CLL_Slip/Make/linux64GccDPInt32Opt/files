@@ -1,0 +1,4 @@
+SOURCE += U/CLL_SlipU_FvPatchVectorField.C
+SOURCE += T/CLL_JumpT_FvPatchScalarField.C
+
+LIB = $(FOAM_USER_LIBBIN)/librhoCentralFoam_CLL_Slip
